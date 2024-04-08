@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { changePasswordAsync } from "../features/auth/authSlice";
+import { changePasswordAsync } from "../../features/auth/authSlice";
 import { useState } from "react";
 import { AiFillEye,AiFillEyeInvisible } from "react-icons/ai";
 
@@ -11,14 +11,12 @@ export default function ChangePasswordPage() {
     watch,
     formState: { errors },
   } = useForm();
-  const [showOldPassowrd, setOldPassword] = useState(false);
-  const [showNewPassowrd, setShowNewPassword] = useState(false);
-  const [showConfirmPassowrd, setShowConfirmPassword] = useState(false);
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useDispatch();
   const password=watch('password')
-  const handlePasswordClick=()=>{
 
-  }
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -53,9 +51,9 @@ export default function ChangePasswordPage() {
                   {...register("oldPassword", {
                     required: "Old Password is required",
                   })}
-                  type={showPassowrd ? "text" : "password"}
-                  // onFocus={() => setShowPassword(!showPassowrd)}
-                  // onBlur={() => setShowPassword(!showPassowrd)}
+                  type={showOldPassword ? "text" : "password"}
+                  // onFocus={() => setShowPassword(!showPassword)}
+                  // onBlur={() => setShowPassword(!showPassword)}
                   autoFocus
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 "
                 />
@@ -63,11 +61,11 @@ export default function ChangePasswordPage() {
                   <p className="text-red-500">{errors.oldPassword.message}</p>
                 )}
               </div>
-              <div className="text-2xl absolute top-9 right-5">
-                    {showPassowrd === false ? (
-                      <AiFillEyeInvisible onClick={()=>setShowPassword()} />
+              <div className="text-2xl absolute top-9 right-5 cursor-pointer">
+                    {showOldPassword === false ? (
+                      <AiFillEyeInvisible onClick={()=>setShowOldPassword(!showOldPassword)} />
                     ) : (
-                      <AiFillEye onClick={handlePasswordClick} />
+                      <AiFillEye onClick={()=>setShowOldPassword(!showOldPassword)} />
                     )}
                   </div>
             </div>
@@ -87,20 +85,18 @@ export default function ChangePasswordPage() {
                   {...register("newPassword", {
                     required: "New Password is required",
                   })}
-                  // onFocus={() => setShowPassword(!showPassowrd)}
-                  // onBlur={() => setShowPassword(!showPassowrd)}
-                  type="text"
+                  type={showNewPassword ? "text" : "password"}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 {errors.newPassword && (
                   <p className="text-red-500">{errors.newPassword.message}</p>
                 )}
               </div>
-              <div className="text-2xl absolute top-9 right-5">
-                    {showPassowrd === false ? (
-                      <AiFillEyeInvisible onClick={handlePasswordClick} />
+              <div className="text-2xl absolute top-9 right-5 cursor-pointer">
+                    {showNewPassword === false ? (
+                      <AiFillEyeInvisible onClick={()=>setShowNewPassword(!showNewPassword)} />
                     ) : (
-                      <AiFillEye onClick={handlePasswordClick} />
+                      <AiFillEye onClick={()=>setShowNewPassword(!showNewPassword)} />
                     )}
                   </div>
             </div>
@@ -121,13 +117,12 @@ export default function ChangePasswordPage() {
                     required: "Confirm Password is required",
                     validate:(value)=>value===password || "The Password does not match"
                   })}
-                  // onFocus={() => setShowPassword(!showPassowrd)}
-                  // onBlur={() => setShowPassword(!showPassowrd)}
+
                   onPaste={(e) => {
                     e.preventDefault();
                     return false;
                   }}
-                  type="password"
+                  type={showConfirmPassword?"text":"password"}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 
@@ -136,11 +131,11 @@ export default function ChangePasswordPage() {
                     {errors.confirmPassword.message}
                   </p>
                 )}
-              <div className="text-2xl absolute top-9 right-5">
-                    {showPassowrd === false ? (
-                      <AiFillEyeInvisible onClick={handlePasswordClick} />
+              <div className="text-2xl absolute top-9 right-5 cursor-pointer">
+                    {showConfirmPassword === false ? (
+                      <AiFillEyeInvisible onClick={()=>setShowConfirmPassword(!showConfirmPassword)} />
                     ) : (
-                      <AiFillEye onClick={handlePasswordClick} />
+                      <AiFillEye onClick={()=>setShowConfirmPassword(!showConfirmPassword)}/>
                     )}
                   </div>
               </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-
+import { AiFillEye,AiFillEyeInvisible } from "react-icons/ai";
 import { checkUserAsync } from "../authSlice";
 import { Link } from "react-router-dom";
 // import styles from './Counter.module.css';
@@ -15,6 +15,7 @@ export default function Login() {
   } = useForm();
 
   const dispatch = useDispatch();
+  const [showPassword,setShowPassword]=useState(false)
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -63,7 +64,7 @@ export default function Login() {
                 )}
             </div>
           </div>
-          <div>
+          <div className="relative">
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
@@ -86,13 +87,20 @@ export default function Login() {
                 {...register("password", {
                   required: "Password is required",
                 })}
-                type="password"
+                type={showPassword?"text":"password"}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
               {errors.password && (
                   <p className="text-red-500">{errors.password.message}</p>
                 )}
             </div>
+            <div className="text-2xl absolute top-9 right-5 cursor-pointer">
+                    {showPassword === false ? (
+                      <AiFillEyeInvisible onClick={()=>{setShowPassword(!showPassword)}}/>
+                    ) : (
+                      <AiFillEye onClick={()=>{setShowPassword(!showPassword)}}/>
+                    )}
+                  </div>
           </div>
 
           <div>
@@ -104,16 +112,6 @@ export default function Login() {
             </button>
           </div>
         </form>
-
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Not a member?{" "}
-          <Link
-            to="/signup"
-            className="font-semibold leading-3 text-indigo-600 hover:text-indigo-500"
-          >
-            Create an Account
-          </Link>
-        </p>
       </div>
     </div>
   );

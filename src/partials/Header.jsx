@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 // import SearchModal from '../components/ModalSearch';
-// import Notifications from '../components/DropdownNotifications';
+import Notifications from '../components/DropdownNotifications';
 // import Help from '../components/DropdownHelp';
 import UserMenu from '../components/DropdownProfile';
-// import ThemeToggle from '../components/ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle'; 
 
 function Header({ sidebarOpen, setSidebarOpen }) {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
@@ -61,9 +61,9 @@ function Header({ sidebarOpen, setSidebarOpen }) {
               </button>
               {/* <SearchModal id="search-modal" searchId="search" modalOpen={searchModalOpen} setModalOpen={setSearchModalOpen} /> */}
             </div>
-            {/* <Notifications align="right" /> */}
+            <Notifications align="right" />
             {/* <Help align="right" /> */}
-            {/* <ThemeToggle /> */}
+            <ThemeToggle />
             {/*  Divider */}  
             <hr className="w-px h-6 bg-slate-200 dark:bg-slate-700 border-none" />
             <UserMenu align="right" />

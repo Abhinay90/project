@@ -3,16 +3,15 @@ import './css/style.css';
 
 import { EmployeeList } from './features/employee-list/EmployeeList';
 import Dashboard from './pages/Dashboard';
-import SignInPage from './pages/SignInPage';
+import SignInPage from './pages/auth/SignInPage';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import ForgotPassword from './pages/ForgotPasswordPage';
-import SignUpPage from './pages/SignUpPage';
+import ForgotPassword from './pages/auth/ForgotPasswordPage';
 import UserFormPage from './pages/UserFormPage';
 import Sidebar from './partials/Sidebar';
-import ChangePasswordPage from './pages/ChangePasswordPage';
+import ChangePasswordPage from './pages/auth/ChangePasswordPage';
 
 
 
@@ -26,12 +25,6 @@ const  router = createBrowserRouter([
       path: "/signIn",
       element: (
         <SignInPage></SignInPage>
-      ),
-    },
-    {
-      path: "/signup",
-      element: (
-        <SignUpPage></SignUpPage>
       ),
     },
     {

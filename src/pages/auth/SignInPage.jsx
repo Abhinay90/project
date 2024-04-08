@@ -1,4 +1,4 @@
-import Login from "../features/auth/Components/Login";
+import Login from "../../features/auth/Components/Login";
 
 export default function SignInPage(){
       return(

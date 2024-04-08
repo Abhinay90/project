@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { sendMailAsync } from "../features/auth/authSlice";
+import { sendMailAsync } from "../../features/auth/authSlice";
 
 export default function ForgotPassword() {
   const dispatch=useDispatch();
